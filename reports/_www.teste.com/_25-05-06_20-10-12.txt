@@ -1,0 +1,19 @@
+# Dirsearch started Tue May  6 20:10:59 2025 as: C:\Users\Arthur\AppData\Local\Programs\Python\Python313\Scripts\dirsearch -u www.teste.com -e=php,html,txt --include-status=200 --format=plain t-50 -q
+
+200   157B   https://www.teste.com/.babelrc.js
+200   157B   https://www.teste.com/.config/karma.conf.js
+200   157B   https://www.teste.com/.eslintrc.js
+200   157B   https://www.teste.com/.js
+200   157B   https://www.teste.com/.mongorc.js
+200   157B   https://www.teste.com/.prettierrc.js
+200   157B   https://www.teste.com/.postcssrc.js
+200   157B   https://www.teste.com/.src/index.js
+200   157B   https://www.teste.com/.src/app.js
+200   157B   https://www.teste.com/.src/server.js
+200   157B   https://www.teste.com/.template-lintrc.js
+200   157B   https://www.teste.com/AccessPlatform/auth/clientscripts/cookies.js
+200   157B   https://www.teste.com/AccessPlatform/auth/clientscripts/login.js
+200   157B   https://www.teste.com/ad_js.js
+200   157B   https://www.teste.com/admin.js
+200   157B   https://www.teste.com/app.js
+200   157B   https://www.teste.com/babel.config.js

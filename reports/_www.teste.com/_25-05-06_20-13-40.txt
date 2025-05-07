@@ -1,0 +1,3 @@
+# Dirsearch started Tue May  6 20:13:45 2025 as: C:\Users\Arthur\AppData\Local\Programs\Python\Python313\Scripts\dirsearch -u www.teste.com -e=php,html,txt --include-status=200 --format=plain t-50 -q
+
+200   157B   https://www.teste.com/.babelrc.js

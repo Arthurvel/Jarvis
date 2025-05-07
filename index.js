@@ -3,10 +3,10 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 
 const Report = require('./src/models/report.model.js');
-const SqlMap = require('./src/models/sqlmap.model.js');
+
 
 const reportRoute = require('./src/routes/report.route.js');
-const sqlmapRoute = require('./src/routes/sqlmap.route.js');
+const sqlmapRoute = require('./src/routes/target.route.js');
 
 
 const app = express();
