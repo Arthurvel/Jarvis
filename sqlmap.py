@@ -1,42 +1,27 @@
 import requests
 import subprocess
+import json 
 
 urlGet = "http://localhost:3000/api/report"
+
 urlPost = "http://localhost:3000/api/report"
 
-# Obter as URLs via GET
 
-resposta = requests.get(url=urlGet)
+resposta = requests.get(url= urlGet).json()
 
-urls = [url['url'] for url in resposta.json()]
+urls = [url['url'] for url in resposta]
 
+target = urls[-1]
 
-target_url = urls[-1]
-
-# Comando XSStrike
 cmd = [
-    'xsstrike', '-u', target_url
+    'sqlmap', '-u',  target, '--batch'
 ]
 
-# Rodar XSStrike e responder "n" para o prompt automaticamente
+fim = subprocess.run(cmd, capture_output=True, text=True)
 
-process = subprocess.Popen(
-        cmd,
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True
-    )
-
-    # Enviar 'n' para o prompt "Would you like to continue scanning? [y/N]"
-stdout, stderr = process.communicate(input='n\n')
-
-    # Criar o JSON com o resultado
 jayson = {
-        "name": stdout,
-        "url": target_url
-    }
+    "name": fim.stdout,
+    'url': urlGet
+}
 
-post = requests.post(url=urlPost, json=jayson)
-
-
+post = requests.post(url=urlPost, data=jayson)

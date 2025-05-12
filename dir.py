@@ -11,8 +11,10 @@ resposta = requests.get(url= urlGet).json()
 
 urls = [url['url'] for url in resposta]
 
+target = urls[-1]
+
 cmd = [
-    'dirsearch', '-u',  urls[-1], '-e=php,html,txt','--include-status=200', '--format=plain','t-50', '-q'
+    'dirsearch', '-u',  target, '-e=php,html,txt','--include-status=200', '--format=plain','t-50', '-q'
 ]
 
 fim = subprocess.run(cmd, capture_output=True, text=True)
