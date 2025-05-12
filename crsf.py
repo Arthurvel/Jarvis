@@ -11,18 +11,15 @@ resposta = requests.get(url= urlGet).json()
 
 urls = [url['url'] for url in resposta]
 
-urlTeste = urls[-1]
-
 cmd = [
-    'dirsearch', '-u',  urlTeste, '-e=php,html,txt','--include-status=200', '--format=plain','t-50', '-q'
+    'xsstrike', '-u',  urls[-1], '--batch'
 ]
 
 fim = subprocess.run(cmd, capture_output=True, text=True)
 
 jayson = {
     "name": fim.stdout,
-    'url': urlTeste
+    'url': urlGet
 }
 
 post = requests.post(url=urlPost, data=jayson)
-
