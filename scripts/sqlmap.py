@@ -1,6 +1,6 @@
 import requests
 import subprocess
-import json 
+
 
 urlGet = "http://localhost:3000/api/report"
 
@@ -14,7 +14,10 @@ urls = [url['url'] for url in resposta]
 target = urls[-1]
 
 cmd = [
-    'sqlmap', '-u',  target, '--batch'
+    'sqlmap', 
+    '-u', 
+    target, 
+    '--batch'
 ]
 
 fim = subprocess.run(cmd, capture_output=True, text=True)

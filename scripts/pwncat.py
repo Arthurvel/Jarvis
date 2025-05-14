@@ -1,14 +1,29 @@
-from urllib.parse import urlparse
+import requests
+import subprocess
+import json 
 
-import socket
+urlGet = "http://localhost:3000/api/report"
 
-url = "https://alunos.cefet-rj.br/aluno/login.action?error="
+urlPost = "http://localhost:3000/api/report"
 
-parsed =urlparse(url)
 
-host = parsed.hostname
+resposta = requests.get(url= urlGet).json()
 
-ip = socket.gethostbyname(host)
+urls = [url['url'] for url in resposta]
 
-print(ip)
+target = urls[-1]
 
+cmd = [
+    'arjun',
+    '-u',  
+    target
+]
+
+fim = subprocess.run(cmd, capture_output=True, text=True)
+
+jayson = {
+    "name": fim.stdout,
+    'url': urlGet
+}
+
+post = requests.post(url=urlPost, data=jayson)

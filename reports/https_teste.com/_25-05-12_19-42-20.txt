@@ -1,0 +1,4 @@
+# Dirsearch started Mon May 12 19:43:43 2025 as: C:\Users\Arthur\AppData\Local\Programs\Python\Python313\Scripts\dirsearch -u https://teste.com --include-status=200 --format=plain t-50 -q
+
+200    43B   https://teste.com/favicon.ico
+200   308B   https://teste.com/robots.txt
