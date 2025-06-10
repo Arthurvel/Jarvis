@@ -1,38 +1,32 @@
 import requests
 import subprocess
-import schedule
-import time
+import httpx
+import asyncio
 
-def script():
-    urlAPI = "http://localhost:3000/api/report"
+async def verificar_api():
+    async with httpx.AsyncClient() as client:
+        resposta_http = await client.get("http://localhost:3000/api/report")
+        
+        resposta =await resposta_http.json()
+        
+        urls = [url['url'] for url in resposta]
 
-    resposta = requests.get(url= urlAPI).json()
-
-    urls = [url['url'] for url in resposta]
-
-    target = urls[-1]
+        target = urls[-1]
     
-    
+        cmd = [
+        'sqlmap', 
+        '-u', 
+        target, 
+        '--batch'
+        ]
 
-    cmd = [
-    'sqlmap', 
-    '-u', 
-    target, 
-    '--batch'
-    ]
+        fim = subprocess.run(cmd, capture_output=True, text=True)
 
-    fim = subprocess.run(cmd, capture_output=True, text=True)
+        jayson = {
+        "name": fim.stdout,
+        'url': target
+        }
 
-    jayson = {
-    "name": fim.stdout,
-    'url': urlAPI
-    }
+        await client.post(url="http://localhost:3000/api/report", json=jayson)
 
-    post = requests.post(url=urlAPI, json=jayson)
-    
-
-schedule.every(2).minute.do(script)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+asyncio.run(verificar_api())
