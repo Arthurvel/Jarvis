@@ -1,30 +1,38 @@
 import requests
 import subprocess
+import schedule
+import time
 
+def script():
+    urlAPI = "http://localhost:3000/api/report"
 
-urlGet = "http://localhost:3000/api/report"
+    resposta = requests.get(url= urlAPI).json()
 
-urlPost = "http://localhost:3000/api/report"
+    urls = [url['url'] for url in resposta]
 
+    target = urls[-1]
+    
+    
 
-resposta = requests.get(url= urlGet).json()
-
-urls = [url['url'] for url in resposta]
-
-target = urls[-1]
-
-cmd = [
+    cmd = [
     'sqlmap', 
     '-u', 
     target, 
     '--batch'
-]
+    ]
 
-fim = subprocess.run(cmd, capture_output=True, text=True)
+    fim = subprocess.run(cmd, capture_output=True, text=True)
 
-jayson = {
+    jayson = {
     "name": fim.stdout,
-    'url': urlGet
-}
+    'url': urlAPI
+    }
 
-post = requests.post(url=urlPost, data=jayson)
+    post = requests.post(url=urlAPI, json=jayson)
+    
+
+schedule.every(2).minute.do(script)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
