@@ -1,0 +1,85 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+body{
+    background:  #152238;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(img/ChatGPT\ Image\ 19\ de\ jun.\ de\ 2025\,\ 22_55_45.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container{
+    background: rgba(255, 255, 255, 1); 
+    border-radius: 14px;
+    margin: 14px;
+    max-width: 600px ;
+    width: 100%;
+    overflow: hidden;
+    border: 2px, solid #fafafa;
+}
+
+.header h2{
+    background: linear-gradient(120deg, #152238  ,#152238 100%);
+    padding: 8px;
+    text-align: center;
+    color: #FFF;
+}
+
+.form{
+    background-color: #808080;
+    padding: 18px; 
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; 
+    
+}
+
+.form-content input{
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    padding: 8px;
+    border: 2px, solid #152238;
+    margin-bottom: 15px;
+}
+
+.form-content a{
+    position: absolute;
+    bottom: -8px;
+    left:0;
+    visibility: hidden;
+}
+
+.form button{
+    background-color: #152238 ;
+    color: #FFF;
+    width: 100%;
+    border-radius: 14px;
+    padding: 10px;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 14px;
+}
+
+
+.form-content.error input{
+    border-color: #ff3b25;
+
+}
+
+.form-content.error a{
+    border-color: #ff3b25;
+}

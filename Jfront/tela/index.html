@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css" />
+
+    <title>Dados do Pentest</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="header">
+            <h2>Jarvis</h2>
+        </section>
+
+        <form id="form" class="form">
+            <div class="form-content">
+                <label style="color: white;" for="Nome">Nome do Relatório</label>
+                <input type="text" id="Nome" placeholder="Nome" />
+                <a>Insira apenas letras e números</a>
+            </div>
+
+            <div class="form-content">
+                <label style="color: white;" for="URL">URL do Teste</label>
+                <input type="url" id="URL" placeholder="URL" />
+                <a>Informe um endereço válido !</a>
+
+                    <button type="submit">Realizar Pentest</button>
+                </div>
+        </form>
+
+        <script>
+        document.getElementById('form').addEventListener('submit', async function (e) {
+        e.preventDefault(); // impede o reload da página
+
+        const nome = document.getElementById('Nome').value.trim();
+        const url = document.getElementById('URL').value.trim();
+
+        if (!nome || !url) {
+            alert("Preencha os dois campos.");
+            return;
+        }
+
+        try {
+            const response = await fetch('http://127.0.0.1:3000/api/report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: nome,
+                    url: url
+                })
+            });
+
+            if (response.ok) {
+                alert("Relatório enviado com sucesso!");
+                document.getElementById('form').reset();
+            } else {
+                const data = await response.json();
+                alert("Erro ao enviar relatório: " + (data.message || response.status));
+            }
+        } catch (error) {
+            alert("Erro ao conectar à API: " + error.message);
+        }
+    });
+</script>
+    </div>
+</body>
+</html>

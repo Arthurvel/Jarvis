@@ -1,4 +1,5 @@
 const Report = require('../models/report.model.js');
+const {sendMessage} = require('../kafka/producer.js');
 
 const getReports = async (req, res) =>{
     try {
@@ -25,6 +26,12 @@ const getReport = async (req,res) =>{
 const createReport = async (req, res) =>{
     try{
         const report = await Report.create(req.body);
+
+        await sendMessage('report',{
+            id: report.id,
+            url: report.url
+        });
+
         res.status(200).json(report);
     }catch(error){
         res.status(500).json({message:error.message});

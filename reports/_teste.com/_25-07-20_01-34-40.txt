@@ -1,0 +1,4 @@
+# Dirsearch started Sun Jul 20 01:35:16 2025 as: C:\Users\Arthur\AppData\Local\Programs\Python\Python313\Scripts\dirsearch -u teste.com --include-status=200 --format=plain --threads=50 -q
+
+200     0B   http://teste.com/.well-known/acme-challenge/dtfy
+200   308B   http://teste.com/robots.txt
